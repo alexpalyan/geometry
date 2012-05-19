@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "src/MainWindow.h"
+#include "MainWindow.h"
 #include <gtkmm/application.h>
 
 #ifdef WIN32
