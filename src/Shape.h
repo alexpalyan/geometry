@@ -9,7 +9,6 @@
 #define	SHAPE_H
 
 #include <vector>
-#include "Point.h"
 #include "EditBox.h"
 #include "Canvas.h"
 
@@ -40,8 +39,6 @@ protected:
     float fltPerimeter;
     float fltSquare;
 private:
-    CPoint* pPointO;
-
     static void initShapes();
 
     static int iShape;

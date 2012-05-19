@@ -28,10 +28,6 @@ protected:
 private:
     int getVariables();
 
-    CPoint* pPointA;
-    CPoint* pPointB;
-    CPoint* pPointC;
-
     float fltSideA;
     float fltSideB;
     float fltSideC;
