@@ -8,14 +8,10 @@
 #ifndef SHAPEWINDOW_H
 #define	SHAPEWINDOW_H
 
-#include <gtkmm/window.h>
-#include <gtkmm/button.h>
-#include <gtkmm/enums.h>
-#include <gtkmm/fixed.h>
-#include <gtkmm/drawingarea.h>
-#include <gtkmm/messagedialog.h>
 #include <vector>
 #include <ostream>
+
+#include <gtkmm.h>
 
 #include "Shape.h"
 #include "EditBox.h"
@@ -23,18 +19,19 @@
 class ShapeWindow: public Gtk::Window {
 public:
     ShapeWindow();
-    ShapeWindow(const ShapeWindow& orig);
+    ShapeWindow(BaseObjectType*, const Glib::RefPtr<Gtk::Builder>&);
     virtual ~ShapeWindow();
-    void onCalculateButtonClick();
 protected:
+    void onCalculateButtonClick();
     void onShow();
+	
+	Glib::RefPtr<Gtk::Builder> m_refBuilder;
+	Gtk::Button* m_pCalculateButton;
+	Gtk::Box* m_pFieldsBox;
+	CCanvas* m_pCanvas;
 private:
-    Gtk::Button button;
-    Gtk::Fixed frame;
-    CCanvas canvas;
     CShape* pShape;
     std::vector<CEditBox*> dateFields;
-    int buttons_x, buttons_y;
 };
 
 #endif	/* SHAPEWINDOW_H */

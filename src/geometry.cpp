@@ -15,8 +15,8 @@
 #include "MainWindow.h"
 
 /* For testing propose use the local (not installed) ui file */
-/* #define UI_FILE PACKAGE_DATA_DIR"/ui/MainWindow.ui" */
-#define UI_FILE "src/MainWindow.ui"
+/* #define UI_FILE PACKAGE_DATA_DIR"/ui/geometry.ui" */
+#define UI_FILE "src/geometry.ui"
 
 
 int main( int   argc, char *argv[] )

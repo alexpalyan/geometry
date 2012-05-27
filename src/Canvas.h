@@ -11,14 +11,14 @@
 #include <cairo.h>
 #include <math.h>
 #include <string>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm.h>
 
 class CShape;
 
 class CCanvas: public Gtk::DrawingArea {
 public:
     CCanvas();
-    CCanvas(const CCanvas& orig);
+    CCanvas(BaseObjectType*, const Glib::RefPtr<Gtk::Builder>&);
     virtual ~CCanvas();
     void setShape(CShape*);
     CShape* getShape();
@@ -29,9 +29,9 @@ public:
 protected:
     virtual bool onDraw(const Cairo::RefPtr<Cairo::Context>&);
     
+	Glib::RefPtr<Gtk::Builder> m_refBuilder;
+    Cairo::RefPtr<Cairo::Context> m_refCrContext;
 private:
-    GtkWidget *drawingArea;
-    Cairo::RefPtr<Cairo::Context> cr;
     CShape* pShape;
     int width;
     int height;

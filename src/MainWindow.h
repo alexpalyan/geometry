@@ -26,7 +26,7 @@ protected:
     Gtk::ButtonBox* m_pShapeButtonBox;
 private:
 	
-    ShapeWindow shapeWindow;
+    ShapeWindow* shapeWindow;
 };
 
 #endif	/* MAINWINDOW_H */

@@ -9,36 +9,48 @@
 #include "ShapeWindow.h"
 #include "Canvas.h"
 
-ShapeWindow::ShapeWindow() {
-    buttons_x = 20;
-    buttons_y = 10;
-    set_border_width(10);
-    set_position(Gtk::WIN_POS_CENTER_ON_PARENT);
-    set_default_size(215, 250);
-    set_title("Geometry");
-
-    signal_show().connect(sigc::mem_fun(*this,
-            &ShapeWindow::onShow));
-
-    add(frame);
-
-    button.set_label("Посчитать");
-    button.set_size_request(135, 35);
-    frame.put(button, buttons_x, buttons_y);
-
-    button.signal_clicked().connect( sigc::mem_fun( *this,
-                &ShapeWindow::onCalculateButtonClick) );
-
-    frame.put(canvas, 300, 10);
+ShapeWindow::ShapeWindow()
+{
+	
 }
 
-ShapeWindow::ShapeWindow(const ShapeWindow& orig) {
+ShapeWindow::ShapeWindow (BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder)
+: Gtk::Window (cobject),
+  m_refBuilder (refBuilder),
+  m_pFieldsBox (0),
+  m_pCalculateButton (0),
+  m_pCanvas (0)
+{
+	m_refBuilder->get_widget("FieldsBox", m_pFieldsBox);
+	m_refBuilder->get_widget("CalculateButton", m_pCalculateButton);
+	m_refBuilder->get_widget("ShapeDrawingArea", m_pCanvas);
+
+	if (m_pFieldsBox)
+	{
+
+		signal_show().connect(sigc::mem_fun(*this,
+		        &ShapeWindow::onShow));
+
+	}
+
+	if (m_pCalculateButton)
+	{
+		m_pCalculateButton->signal_clicked().connect(
+			sigc::mem_fun( *this,
+		    	&ShapeWindow::onCalculateButtonClick) );
+
+	}
+	
+
 }
 
-ShapeWindow::~ShapeWindow() {
+ShapeWindow::~ShapeWindow()
+{
+
 }
 
-void ShapeWindow::onCalculateButtonClick() {
+void ShapeWindow::onCalculateButtonClick()
+{
     pShape->calculate();
 }
 
@@ -50,8 +62,6 @@ void ShapeWindow::onShow() {
         delete dateFields.back();
         dateFields.pop_back();
     }
-    buttons_x = 20;
-    buttons_y = 10;
 
     if (!pShape->isImplemented()) {
         Gtk::MessageDialog dialog(*this, "Не реализовано!", false,
@@ -61,7 +71,10 @@ void ShapeWindow::onShow() {
         return;
     }
 
-    canvas.setShape(pShape);
+	if (m_pCanvas)
+	{
+		m_pCanvas->setShape(pShape);
+	}
     std::ostringstream titlestream;
     titlestream << "Geometry - " << pShape->getName();
     set_title(titlestream.str());
@@ -69,15 +82,10 @@ void ShapeWindow::onShow() {
     int i;
     for (i = 0; i < pShape->getTextFieldsCount(); i++) {
         dateFields.push_back( new CEditBox() );
-        dateFields.at(i)->setWidgetSize(90, 75, 30);
+//        dateFields.at(i)->setWidgetSize(90, 75, 30);
         dateFields.at(i)->setLabel(pShape->getLabelForTextField(i));
-        dateFields.at(i)->putToContainer(frame, buttons_x + 0, buttons_y + 0);
-
-        buttons_y += 40;
+		m_pFieldsBox->pack_end ( *dateFields.at(i) );
+		dateFields.at(i)->show ();
     }
     pShape->setDateFields(dateFields);
-    frame.move(button, buttons_x + 30, buttons_y + 20);
-    frame.set_size_request(buttons_x + 400, buttons_y + 40);
-    set_size_request(buttons_x + 400, buttons_y + 40);
-    frame.show_all();
 }

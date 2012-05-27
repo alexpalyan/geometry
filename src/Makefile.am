@@ -1,7 +1,7 @@
 
 
 uidir = $(pkgdatadir)/ui
-ui_DATA = MainWindow.ui
+ui_DATA = geometry.ui
 
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \
@@ -17,7 +17,7 @@ bin_PROGRAMS = geometry
 
 geometry_SOURCES = geometry.cpp MainWindow.cpp EditBox.cpp Canvas.cpp \
 		   Shape/Circle.cpp Shape/Triangle.cpp Shape/Parallelogram.cpp \
-		   Shape.cpp ShapeWindow.cpp
+		   Shape.cpp ShapeWindow.cpp Canvas.h EditBox.h MainWindow.h Shape.h ShapeWindow.h
 
 geometry_LDFLAGS = 
 

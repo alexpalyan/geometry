@@ -10,17 +10,13 @@
 
 #include <vector>
 #include <string>
-#include <gtkmm/fixed.h>
-#include <gtkmm/label.h>
-#include <gtkmm/entry.h>
+#include <gtkmm.h>
 
-class CEditBox {
+class CEditBox: public Gtk::Box {
 public:
     CEditBox();
     CEditBox(const CEditBox& orig);
     virtual ~CEditBox();
-    void setWidgetSize(int, int, int);
-    void putToContainer(Gtk::Fixed&, int, int);
     void setText(std::string);
     void setLabel(std::string);
     std::string getText();
