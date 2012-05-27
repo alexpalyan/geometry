@@ -6,33 +6,36 @@
  */
 
 #include <vector>
+#include <iostream>
+
+#include <gtkmm.h>
+
+#include "config.h"
 
 #include "MainWindow.h"
-#include <gtkmm/application.h>
 
-#ifdef WIN32
-#include <windows.h>
-#endif
-
-static gboolean delete_event( GtkWidget *widget, GdkEvent  *event,
-                              gpointer   data )
-{
-    g_print ("delete event occurred\n");
-    return FALSE;
-}
-
-void calculate_button_click(GtkWidget *widget, CShape* pShape)
-{
-    pShape->calculate();
-}
-
+/* For testing propose use the local (not installed) ui file */
+/* #define UI_FILE PACKAGE_DATA_DIR"/ui/MainWindow.ui" */
+#define UI_FILE "src/MainWindow.ui"
 
 
 int main( int   argc, char *argv[] )
 {
-    Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.gtkmm.geometry");
+    Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.apmpc.geometry");
 
-    MainWindow appwindow;
+	//Load the Glade file and instiate its widgets:
+	Glib::RefPtr<Gtk::Builder> builder;
+	try
+	{
+		builder = Gtk::Builder::create_from_file(UI_FILE);
+	}
+	catch (const Glib::FileError & ex)
+	{
+		std::cerr << ex.what() << std::endl;
+		return 1;
+	}
+	MainWindow* appwindow = 0;
+	builder->get_widget_derived("MainWindow", appwindow);
 
-    return app->run(appwindow);
+    return app->run(*appwindow);
 }

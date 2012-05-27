@@ -8,24 +8,24 @@
 #ifndef MAINWINDOW_H
 #define	MAINWINDOW_H
 
-#include <gtkmm/window.h>
-#include <gtkmm/applicationwindow.h>
-#include <gtkmm/button.h>
-#include <gtkmm/buttonbox.h>
-#include <gtkmm/enums.h>
 #include <vector>
+#include <gtkmm.h>
 #include "Shape.h"
 #include "ShapeWindow.h"
 
 class MainWindow: public Gtk::Window {
 public:
     MainWindow();
-    MainWindow(const Glib::RefPtr<Gtk::Application>& application);
+	MainWindow(BaseObjectType*, const Glib::RefPtr<Gtk::Builder>&);
     virtual ~MainWindow();
+protected:
     void onShapeButtonClick(int);
+
+	Glib::RefPtr<Gtk::Builder> m_refBuilder;
+    std::vector<Gtk::Button*> m_pvShapeButtons;
+    Gtk::ButtonBox* m_pShapeButtonBox;
 private:
-    std::vector<Gtk::Button*> buttons;
-    Gtk::VButtonBox buttonbox;
+	
     ShapeWindow shapeWindow;
 };
 

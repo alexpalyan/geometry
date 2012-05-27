@@ -1,10 +1,33 @@
-CFLAGS = --pedantic -Wall -std=c99 -O2 -g `pkg-config --cflags --libs gtkmm-3.0`
-CPPFLAGS = -g `pkg-config --cflags gtkmm-3.0`
-LIBS = `pkg-config --libs gtkmm-3.0`
-AM_LDFLAGS =
+
+
+uidir = $(pkgdatadir)/ui
+ui_DATA = MainWindow.ui
+
+AM_CPPFLAGS = \
+	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \
+	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
+	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\" \
+	$(GEOMETRY_CFLAGS)
+
+AM_CFLAGS =\
+	 -Wall\
+	 -g
 
 bin_PROGRAMS = geometry
+
 geometry_SOURCES = geometry.cpp MainWindow.cpp EditBox.cpp Canvas.cpp \
 		   Shape/Circle.cpp Shape/Triangle.cpp Shape/Parallelogram.cpp \
 		   Shape.cpp ShapeWindow.cpp
+
+geometry_LDFLAGS = 
+
+geometry_LDADD = $(GEOMETRY_LIBS)
+
+
+EXTRA_DIST = $(ui_DATA)
+
+# Remove ui directory on uninstall
+uninstall-local:
+	-rm -r $(uidir)
+	-rm -r $(pkgdatadir)
 

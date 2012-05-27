@@ -15,9 +15,9 @@ AC_PROG_CC
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h])
-PKG_CHECK_MODULES([DEPS], [gtkmm-3.0 >= 3.4.0])
+PKG_CHECK_MODULES(GEOMETRY,gtkmm-3.0)
 
-# Checks for typedefs, structures, and compiler characteristics.
+[]# Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 
 # Checks for library functions.
