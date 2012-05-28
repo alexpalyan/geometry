@@ -23,7 +23,7 @@ ShapeWindow::ShapeWindow (BaseObjectType* cobject, const Glib::RefPtr<Gtk::Build
 {
 	m_refBuilder->get_widget("FieldsBox", m_pFieldsBox);
 	m_refBuilder->get_widget("CalculateButton", m_pCalculateButton);
-	m_refBuilder->get_widget("ShapeDrawingArea", m_pCanvas);
+	m_refBuilder->get_widget_derived ("ShapeDrawingArea", m_pCanvas);
 
 	if (m_pFieldsBox)
 	{
