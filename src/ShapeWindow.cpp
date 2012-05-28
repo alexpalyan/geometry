@@ -1,8 +1,20 @@
 /* 
- * File:   ShapeWindow.cpp
- * Author: freeday
- * 
- * Created on 13 Май 2011 г., 11:21
+ * This file is part of Geometry.
+ *
+ * Geometry is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Geometry is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Geometry.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright © 2012 Palyan Aleksander <freeday@apmpc.dp.ua>
  */
 
 
@@ -82,7 +94,6 @@ void ShapeWindow::onShow() {
     int i;
     for (i = 0; i < pShape->getTextFieldsCount(); i++) {
         dateFields.push_back( new CEditBox() );
-//        dateFields.at(i)->setWidgetSize(90, 75, 30);
         dateFields.at(i)->setLabel(pShape->getLabelForTextField(i));
 		m_pFieldsBox->pack_end ( *dateFields.at(i) );
 		dateFields.at(i)->show ();
