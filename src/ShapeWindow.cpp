@@ -95,7 +95,7 @@ void ShapeWindow::onShow() {
     for (i = 0; i < pShape->getTextFieldsCount(); i++) {
         dateFields.push_back( new CEditBox() );
         dateFields.at(i)->setLabel(pShape->getLabelForTextField(i));
-		m_pFieldsBox->pack_end ( *dateFields.at(i) );
+		m_pFieldsBox->pack_start ( *dateFields.at(i) );
 		dateFields.at(i)->show ();
     }
     pShape->setDateFields(dateFields);

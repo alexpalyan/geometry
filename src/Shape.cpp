@@ -46,7 +46,7 @@ int CShape::getTextFieldsCount() {
 std::string CShape::getLabelForTextField(int iTextField) {
     std::string strings[] = {"Периметр P", "Площадь S"};
 
-    if(iTextField >= (getShapeFieldsCount() + 2)) {
+    if(iTextField >= getTextFieldsCount()) {
         return "error";
     } else if (iTextField >= getShapeFieldsCount()) {
         iTextField -= getShapeFieldsCount();
