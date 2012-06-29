@@ -46,6 +46,7 @@ MainWindow::MainWindow (BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder
 		}
 	}
 
+	m_refBuilder->get_widget_derived("ShapeWindow", shapeWindow);
 }
 
 MainWindow::~MainWindow() {
@@ -53,7 +54,6 @@ MainWindow::~MainWindow() {
 
 void MainWindow::onShapeButtonClick(int iShape) {
     CShape::setCurrentShape(iShape);
-	m_refBuilder->get_widget_derived("ShapeWindow", shapeWindow);
 	if (shapeWindow)
 	{
 		shapeWindow->show();

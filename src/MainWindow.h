@@ -38,7 +38,6 @@ protected:
     std::vector<Gtk::Button*> m_pvShapeButtons;
     Gtk::ButtonBox* m_pShapeButtonBox;
 private:
-	
     ShapeWindow* shapeWindow;
 };
 

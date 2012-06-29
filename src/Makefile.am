@@ -17,7 +17,7 @@ bin_PROGRAMS = geometry
 
 geometry_SOURCES = geometry.cpp MainWindow.cpp EditBox.cpp Canvas.cpp \
 		   Shape/Circle.cpp Shape/Triangle.cpp Shape/Parallelogram.cpp \
-		   Shape.cpp ShapeWindow.cpp Canvas.h EditBox.h MainWindow.h Shape.h ShapeWindow.h
+		   Shape.cpp ShapeWindow.cpp Canvas.h EditBox.h MainWindow.h Shape.h ShapeWindow.h Shape/Circle.h Shape/Parallelogram.h Shape/Triangle.h
 
 geometry_LDFLAGS = 
 
